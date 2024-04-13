@@ -1,0 +1,1 @@
+{"py/object": "Classes.Item.Item", "id": 126053399387610467441529691325646296408, "name": "Potion", "profilePic": "potion.jpg", "description": "Una pozione pazza", "type": {"py/object": "Classes.ItemTypes.Potion.Potion", "effect": "bho", "extra": "Cannonata"}}

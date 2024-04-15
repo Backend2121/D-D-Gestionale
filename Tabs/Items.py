@@ -93,7 +93,7 @@ class Items(QWidget):
 
     def createNew(self) -> None:
         # Check if the item the user wants to create already exists in the adventure's inventory
-        for itemPresent in self.adventure.bestiary:
+        for itemPresent in self.adventure.items:
             if not nameExists(self.itemNameLineEdit.text(), itemPresent.name):
                 return
         if not validateName(self.itemNameLineEdit.text()):

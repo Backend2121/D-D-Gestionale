@@ -23,5 +23,4 @@ class Map:
         directoryExistsCreate(f"{os.getcwd()}\\DB")
         directoryExistsCreate(f"{os.getcwd()}\\DB\\Maps")
         with open(f"{os.getcwd()}\\DB\\Maps\\{self.name}.json", 'w') as f:
-            print("Saving map")
             f.write(jsonpickle.dumps(self))

@@ -8,6 +8,8 @@ from Utils import directoryExistsCreate, validateName
 class Entity:
 
     def setHp(self, amount: int) -> None:
+        if amount == None:
+            return
         self.hp -= amount
 
     def setState(self, state: str) -> None:

@@ -29,6 +29,8 @@ class setHpDialogue(QDialog):
 
     def accept(self) -> None:
         """Add is pressed"""
+        if self.valueLineEdit.text() == "":
+            return super().accept()
         try:
             int(self.valueLineEdit.text())
         except:
@@ -38,6 +40,8 @@ class setHpDialogue(QDialog):
 
     def reject(self) -> None:
         """Subtract is pressed"""
+        if self.valueLineEdit.text() == "":
+            return super().reject()
         try:
             int(self.valueLineEdit.text())
         except:
@@ -67,7 +71,10 @@ class setHpDialogue(QDialog):
         self.setLayout(self.layout)
 
     def getValue(self) -> int:
-        return int(self.valueLineEdit.text())
+        try:
+            return int(self.valueLineEdit.text())
+        except ValueError:
+            return 0
 
 
 class setStateDialogue(QDialog):
@@ -128,6 +135,9 @@ class Dice:
 class MainWindow(QWidget):
 
     def setState(self) -> None:
+        if self.selectedTile.occupiedBy == None:
+            sendAlert("Warning", "No entity is selected!", QMessageBox.Warning)
+            return
         dlg = setStateDialogue()
         if dlg.exec():
             try:
@@ -148,6 +158,9 @@ class MainWindow(QWidget):
         self.adventure.save()
 
     def setHp(self) -> None:
+        if self.selectedTile.occupiedBy == None:
+            sendAlert("Warning", "No entity is selected!", QMessageBox.Warning)
+            return
         dlg = setHpDialogue()
         if dlg.exec():
             self.selectedTile.occupiedBy.setHp(-dlg.getValue())
@@ -476,7 +489,6 @@ class MainWindow(QWidget):
                     if t.occupiedBy != None:
                         if isinstance(t.occupiedBy, Character):
                             pm1 = QPixmap(f"{os.getcwd()}\\DB\\Characters\\Images\\{t.occupiedBy.profilePic}")
-                            print(t.occupiedBy.profilePic)
 
                         elif isinstance(t.occupiedBy, Entity):
                             if t.occupiedBy.entityType == "Monster":

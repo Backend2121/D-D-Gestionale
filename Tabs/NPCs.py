@@ -143,7 +143,7 @@ class NPCs(QWidget):
         except ValueError:
             sendAlert("Invalid number", "Charisma is invalid!")
             return
-        self.adventure.NPCs.append(npc)
+        self.adventure.entities.append(npc)
         item = QListWidgetItem(npc.name)
         item.setData(Qt.UserRole + 1, npc)
         self.npcList.addItem(item)
